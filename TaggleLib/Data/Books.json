@@ -1,0 +1,14 @@
+[
+  {
+    "BookId": 1,
+    "Title": "Day Con Lam Giay",
+    "PriceCredit": 5, // Each time user borrow then user must be charge 
+    "RemainAvailable": 20 //// The number of book that user can borrow if greater than 0 mean user still borrow, if = 0 then not available for user borrow
+  },
+  {
+    "BookId": 2,
+    "Title": "Dac Nhan Tam",
+    "PriceCredit": 5, // Each time user borrow then user must be charge 
+    "RemainAvailable": 20
+  }
+]

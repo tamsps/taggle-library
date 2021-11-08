@@ -1,0 +1,14 @@
+  [
+    {
+      "Email": "abc1@taggle.com",
+      "Password": "123456",
+      "AvailableCredit": 100,
+      "TotalBookIsBorrowing": 0  //// Number of book that user is borrowing at library
+    },
+    {
+      "Email": "abc2@taggle.com",
+      "Password": "123456",
+      "AvailableCredit": 100,
+      "TotalBookIsBorrowing": 0
+    }
+  ]
