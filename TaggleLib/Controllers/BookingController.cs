@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using TaggleLib.Entities;
 using TaggleLib.Services;
 
@@ -15,13 +16,17 @@ namespace TaggleLib.Controllers
     {
         #region properties
         private readonly IDbContext _dbContex;
+        private readonly IConfiguration Configuration;
 
         #endregion
 
         #region Constructor
-        public BookingController(ServiceResolverHelper.ServiceResolver serviceAccessor)
+        public BookingController(ServiceResolverHelper.ServiceResolver serviceAccessor, IConfiguration _config)
         {
-            _dbContex = serviceAccessor("JSON");
+
+            Configuration = _config;
+            var curDb = Configuration["CurrDb"];
+            _dbContex = serviceAccessor(curDb);
             //// Depend on which db type that we use exactly data base
             ////_dbContex = serviceAccessor("SQL");
             ////_dbContex = serviceAccessor("ORACLE");
@@ -29,17 +34,16 @@ namespace TaggleLib.Controllers
         #endregion
         #region Method
         [HttpPost]
-
-        public IActionResult CreateBooking([FromBody] Booking booking)
+        public Booking CreateBooking([FromBody] Booking booking)
         {
             try
             {
-                _dbContex.CreateBooking(booking.BookId, booking.Email);
-                return Ok("Ok");
+                var order = _dbContex.CreateBooking(booking.BookId, booking.Email);
+                return order;
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.ToString());
+                return null;
             }
         }
         #endregion

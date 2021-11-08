@@ -18,7 +18,7 @@ namespace TaggleLib.Services
             throw new NotImplementedException();
         }
 
-        public void CreateBooking(int bookId, string email)
+        public Booking CreateBooking(int bookId, string email)
         {
             throw new NotImplementedException();
         }

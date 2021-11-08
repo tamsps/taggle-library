@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,12 +10,17 @@ namespace TaggleLib.Services
     {
         #region Property
         private readonly IDbContext _dbContex;
+        private readonly IConfiguration Configuration;
 
         #endregion
         #region Constructor
-        public AuthenticationRepository(ServiceResolverHelper.ServiceResolver serviceAccessor)
+        public AuthenticationRepository(ServiceResolverHelper.ServiceResolver serviceAccessor, IConfiguration _config)
         {
-            _dbContex = serviceAccessor("JSON");
+            
+            Configuration = _config;
+            var curDb = Configuration["CurrDb"];
+
+            _dbContex = serviceAccessor(curDb);
             //// Depend on which db type that we use exactly data base
             ////_dbContex = serviceAccessor("SQL");
             ////_dbContex = serviceAccessor("ORACLE");

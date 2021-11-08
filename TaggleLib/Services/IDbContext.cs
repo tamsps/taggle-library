@@ -21,7 +21,7 @@ namespace TaggleLib.Services
         /// </summary>
         /// <param name="bookId"></param>
         /// <param name="email"></param>
-        public void CreateBooking(int bookId, string email);
+        public Booking CreateBooking(int bookId, string email);
 
     }
 }

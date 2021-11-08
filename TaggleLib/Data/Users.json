@@ -1,14 +1,1 @@
-  [
-    {
-      "Email": "abc1@taggle.com",
-      "Password": "123456",
-      "AvailableCredit": 100,
-      "TotalBookIsBorrowing": 0  //// Number of book that user is borrowing at library
-    },
-    {
-      "Email": "abc2@taggle.com",
-      "Password": "123456",
-      "AvailableCredit": 100,
-      "TotalBookIsBorrowing": 0
-    }
-  ]
+[{"Email":"abc1@taggle.com","Password":"123456","AvailableCredit":75,"TotalBookIsBorrowing":5,"CurrentBooking":[{"BookingId":1,"BookId":1,"Email":"abc1@taggle.com","CreatedDate":"11/8/2021 9:54:15 PM","ExpDate":"12/8/2021 9:54:15 PM"},{"BookingId":2,"BookId":1,"Email":"abc1@taggle.com","CreatedDate":"08/11/2021","ExpDate":"08/12/2021"},{"BookingId":3,"BookId":4,"Email":"abc1@taggle.com","CreatedDate":"08/11/2021","ExpDate":"08/12/2021"},{"BookingId":4,"BookId":4,"Email":"abc1@taggle.com","CreatedDate":"08/11/2021","ExpDate":"08/12/2021"},{"BookingId":5,"BookId":4,"Email":"abc1@taggle.com","CreatedDate":"08/11/2021","ExpDate":"08/12/2021"},{"BookingId":6,"BookId":4,"Email":"abc1@taggle.com","CreatedDate":"08/11/2021","ExpDate":"08/12/2021"},{"BookingId":7,"BookId":4,"Email":"abc1@taggle.com","CreatedDate":"08/11/2021","ExpDate":"08/12/2021"},{"BookingId":8,"BookId":4,"Email":"abc1@taggle.com","CreatedDate":"08/11/2021","ExpDate":"08/12/2021"},{"BookingId":9,"BookId":4,"Email":"abc1@taggle.com","CreatedDate":"08/11/2021","ExpDate":"08/12/2021"},{"BookingId":10,"BookId":4,"Email":"abc1@taggle.com","CreatedDate":"08/11/2021","ExpDate":"08/12/2021"},{"BookingId":11,"BookId":5,"Email":"abc1@taggle.com","CreatedDate":"08/11/2021","ExpDate":"08/12/2021"},{"BookingId":14,"BookId":1,"Email":"abc1@taggle.com","CreatedDate":"08/11/2021","ExpDate":"08/12/2021"}]},{"Email":"abc2@taggle.com","Password":"123456","AvailableCredit":4,"TotalBookIsBorrowing":2,"CurrentBooking":null}]

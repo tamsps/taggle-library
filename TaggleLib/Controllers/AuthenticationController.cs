@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using TaggleLib.Entities;
 using TaggleLib.Services;
@@ -18,6 +19,7 @@ namespace TaggleLib.Controllers
         #region Properties
         private readonly IAuthenticationRepository _authen;
         private readonly ILogger<AuthenticationController> _logger;
+        private readonly IConfiguration Configuration;
 
         #endregion
 
@@ -26,9 +28,11 @@ namespace TaggleLib.Controllers
         /// Constructor for authen ticattion
         /// </summary>
         /// <param name="authen"></param>
-        public AuthenticationController(IAuthenticationRepository authen )
+        public AuthenticationController(IAuthenticationRepository authen , IConfiguration _config)
         {
             _authen = authen;
+            Configuration = _config;
+
         }
         #endregion
 
@@ -40,7 +44,7 @@ namespace TaggleLib.Controllers
         {
             try
             {
-               var checkLogin = _authen.Login(user.Email, user.Password);
+                var checkLogin = _authen.Login(user.Email, user.Password);
                 return Ok(checkLogin == true);
 
             }catch(Exception ex)

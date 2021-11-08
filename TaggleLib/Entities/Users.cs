@@ -30,6 +30,6 @@ namespace TaggleLib.Entities
         /// <summary>
         /// Current booking at this time
         /// </summary>
-        public List<Books> CurrentBooking { get; set; }
+        public List<Booking> CurrentBooking { get; set; }
     }
 }

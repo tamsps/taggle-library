@@ -34,30 +34,78 @@ namespace TaggleLib.Services
         /// </summary>
         /// <param name="book"></param>
         /// <param name="email"></param>
-        public void CreateBooking(int bookId, string email)
+        public Booking CreateBooking(int bookId, string email)
         {
             try
             {
                 var contentJson = System.IO.File.ReadAllText(@"Data\Booking.json");
                 var listBooking = JsonConvert.DeserializeObject<List<Booking>>(contentJson);
-                var contentBookJson = System.IO.File.ReadAllText(@"Data\Books.json");
-                var listBooks = JsonConvert.DeserializeObject<List<Booking>>(contentBookJson);
+
                 ////Check book available or not
                 var checkAvailableBook = CheckAvailableBookByBookId(bookId);
                 var checkValidUser = checkValidUserByEmail(email);
-                if(checkAvailableBook != null)
+                //// Check valid of book and user have enough credit to borrow and user not over 5 book 
+                if(checkAvailableBook != null && checkValidUser != null && checkValidUser.AvailableCredit >= checkAvailableBook.PriceCredit)
                 {
                     ////Create new booking with expire date = now + 30 days
-                    var newBooking = new Booking() { BookId = bookId, BookingId = listBooking.Count() + 1, Email = email, CreatedDate = DateTime.Now.ToString(), ExpDate = DateTime.Now.AddDays(30).ToString() };
+                    var newBooking = new Booking() { BookId = bookId, BookingId = (listBooking!=null? listBooking.Count() + 1:1) , Email = email, CreatedDate = DateTime.Now.ToString("dd/MM/yyyy"), ExpDate = DateTime.Now.AddDays(30).ToString("dd/MM/yyyy") };
+                    if (listBooking == null)
+                        listBooking = new List<Booking>();
+
                     listBooking.Add(newBooking);
                     var bookingStr = JsonConvert.SerializeObject(listBooking);
                     System.IO.File.WriteAllText(@"Data\Booking.json", bookingStr);
+
+                    ////Update user info
+                    UpdateUser(checkValidUser,checkAvailableBook.PriceCredit);
+
+                    //// Update book
+                    UpdateBook(checkAvailableBook);
+                    return newBooking;
                 }
             }
             catch (Exception ex)
             {
-
+                return null;
             }
+            return null;
+
+        }
+
+        private void UpdateBook(Books checkAvailableBook)
+        {
+            var contentBookJson = System.IO.File.ReadAllText(@"Data\Books.json");
+            var listBooks = JsonConvert.DeserializeObject<List<Books>>(contentBookJson);
+
+            var curBook = listBooks.FirstOrDefault(d => d.BookId == checkAvailableBook.BookId);
+            if (curBook != null)
+            {
+                curBook.RemainAvailable -= 1; 
+            }
+            var booksStr = JsonConvert.SerializeObject(listBooks);
+            System.IO.File.WriteAllText(@"Data\Books.json", booksStr);
+        }
+
+        private void UpdateUser(Users checkValidUser, int priceCredit)
+        {
+            
+            var contentUsersJson = System.IO.File.ReadAllText(@"Data\Users.json");
+            var listUsers = JsonConvert.DeserializeObject<List<Users>>(contentUsersJson);
+            var contentJson = System.IO.File.ReadAllText(@"Data\Booking.json");
+            var listBooking = JsonConvert.DeserializeObject<List<Booking>>(contentJson);
+            var bookingUser = listBooking.FindAll(d =>  string.Equals(d.Email,checkValidUser.Email) == true).ToList();
+
+            var curUser = listUsers.FirstOrDefault(d => string.Equals(d.Email, checkValidUser.Email) == true);
+            if (curUser != null)
+            {
+                curUser.AvailableCredit -= priceCredit;
+                curUser.TotalBookIsBorrowing += 1;
+                curUser.CurrentBooking = bookingUser;
+            }
+                
+
+            var usersStr = JsonConvert.SerializeObject(listUsers);
+            System.IO.File.WriteAllText(@"Data\Users.json", usersStr);
         }
 
         /// <summary>
