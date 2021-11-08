@@ -11,5 +11,14 @@ namespace TaggleLib.Controllers
     [ApiController]
     public class BookingController : ControllerBase
     {
+        #region properties
+
+        #endregion
+
+        #region Constructor
+        #endregion
+        #region Method
+        
+        #endregion
     }
 }

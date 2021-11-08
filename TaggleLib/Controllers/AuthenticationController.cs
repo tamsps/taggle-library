@@ -12,7 +12,7 @@ using TaggleLib.Services;
 namespace TaggleLib.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class AuthenticationController : ControllerBase
     {
         #region Properties

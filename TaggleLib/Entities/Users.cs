@@ -18,5 +18,18 @@ namespace TaggleLib.Entities
         /// Password 
         /// </summary>
         public string Password { get; set; }
+        /// <summary>
+        /// Password 
+        /// </summary>
+        public int AvailableCredit { get; set; }
+        /// <summary>
+        /// Password 
+        /// </summary>
+        public int TotalBookIsBorrowing { get; set; }
+
+        /// <summary>
+        /// Current booking at this time
+        /// </summary>
+        public List<Books> CurrentBooking { get; set; }
     }
 }
