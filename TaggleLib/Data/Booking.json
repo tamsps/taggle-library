@@ -1,3 +1,8 @@
-{
-   
-}
+[
+  {
+    "BookingId": 1,
+    "BookId": 1,
+    "Email": "abc1@taggle.com", //// Each time user borrow then user must be charge 
+    "CreatedDate": "" //// The number of book that user can borrow if greater than 0 mean user still borrow, if = 0 then not available for user borrow
+  }
+]
