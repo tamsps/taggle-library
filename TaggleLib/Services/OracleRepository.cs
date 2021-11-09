@@ -38,5 +38,25 @@ namespace TaggleLib.Services
         {
             throw new NotImplementedException();
         }
+
+        public bool ReturnBook(int bookId, string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Booking ShowBooking(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Booking> CheckBookingExpired(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Booking> CheckBookingNextToExpire(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

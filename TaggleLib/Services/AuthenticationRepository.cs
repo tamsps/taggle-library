@@ -14,9 +14,9 @@ namespace TaggleLib.Services
 
         #endregion
         #region Constructor
-        public AuthenticationRepository()
+        public AuthenticationRepository(ServiceResolverHelper.ServiceResolver serviceAccessor)
         {
-
+            _dbContex = serviceAccessor("JSON");
         }
         public AuthenticationRepository(ServiceResolverHelper.ServiceResolver serviceAccessor, IConfiguration _config)
         {

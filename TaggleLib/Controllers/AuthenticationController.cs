@@ -24,6 +24,10 @@ namespace TaggleLib.Controllers
         #endregion
 
         #region Constructor
+        //public AuthenticationController(IAuthenticationRepository authen)
+        //{
+        //    _authen = authen;
+        //}
         /// <summary>
         /// Constructor for authen ticattion
         /// </summary>
@@ -40,16 +44,16 @@ namespace TaggleLib.Controllers
         // GET: /<controller>/
         [HttpPost]
 
-        public IActionResult Login([FromBody]Users user)
+        public bool Login([FromBody]Users user)
         {
             try
             {
                 var checkLogin = _authen.Login(user.Email, user.Password);
-                return Ok(checkLogin == true);
+                return checkLogin;
 
             }catch(Exception ex)
             {
-                return BadRequest(ex.ToString());
+                return false;
             }
         }
 
